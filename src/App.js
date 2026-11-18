@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
   ArrowDown,
@@ -12,11 +12,13 @@ import {
   Sun,
   Moon,
 } from "lucide-react";
+
+import Loader from "./Loader";
 import "./App.css";
 
-// ==============================
+// ======================================
 // PORTFOLIO DATA
-// ==============================
+// ======================================
 
 const experiences = [
   {
@@ -116,13 +118,19 @@ const skills = [
   "Navigating Ambiguity",
 ];
 
-// ==============================
+// ======================================
 // ANIMATION COMPONENT
-// ==============================
+// ======================================
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0 },
+  hidden: {
+    opacity: 0,
+    y: 25,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
 };
 
 function Reveal({ children, className = "" }) {
@@ -133,16 +141,19 @@ function Reveal({ children, className = "" }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+      }}
     >
       {children}
     </motion.div>
   );
 }
 
-// ==============================
+// ======================================
 // NAVBAR
-// ==============================
+// ======================================
 
 function Navbar({ theme, toggleTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -163,7 +174,9 @@ function Navbar({ theme, toggleTheme }) {
 
         <div className="nav-right">
           <nav
-            className={menuOpen ? "nav-links active" : "nav-links"}
+            className={
+              menuOpen ? "nav-links active" : "nav-links"
+            }
             aria-label="Main navigation"
           >
             {links.map(([label, href]) => (
@@ -187,7 +200,9 @@ function Navbar({ theme, toggleTheme }) {
                 : "Switch to light mode"
             }
             title={
-              theme === "light" ? "Dark mode" : "Light mode"
+              theme === "light"
+                ? "Dark mode"
+                : "Light mode"
             }
           >
             {theme === "light" ? (
@@ -201,10 +216,16 @@ function Navbar({ theme, toggleTheme }) {
             className="menu-toggle"
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={
+              menuOpen ? "Close menu" : "Open menu"
+            }
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? (
+              <X size={24} />
+            ) : (
+              <Menu size={24} />
+            )}
           </button>
         </div>
       </div>
@@ -212,18 +233,26 @@ function Navbar({ theme, toggleTheme }) {
   );
 }
 
-// ==============================
+// ======================================
 // HERO
-// ==============================
+// ======================================
 
 function Hero() {
   return (
     <section className="hero container" id="home">
       <motion.div
         className="hero-content"
-        initial={{ opacity: 0, y: 35 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        initial={{
+          opacity: 0,
+          y: 35,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.8,
+        }}
       >
         <div className="hero-label">
           <span className="status-dot" />
@@ -231,8 +260,10 @@ function Hero() {
         </div>
 
         <h1>
-          Hi, I'm Hari Priya<span className="accent">.</span>
+          Hi, I'm Hari Priya
+          <span className="accent">.</span>
           <br />
+
           <span className="muted">
             Connecting ideas
             <br />
@@ -247,58 +278,80 @@ function Hero() {
         </p>
 
         <div className="hero-buttons">
-          <a href="#projects" className="button button-dark">
-            Explore My Work <ArrowUpRight size={18} />
+          <a
+            href="#projects"
+            className="button button-dark"
+          >
+            Explore My Work
+            <ArrowUpRight size={18} />
           </a>
-          <a href="#contact" className="button button-light">
+
+          <a
+            href="#contact"
+            className="button button-light"
+          >
             Get in Touch
           </a>
         </div>
       </motion.div>
 
       <div className="hero-bottom">
-        <span>BUSINESS & TECHNOLOGY PROFESSIONAL</span>
+        <span>
+          BUSINESS & TECHNOLOGY PROFESSIONAL
+        </span>
+
         <a href="#about">
-          SCROLL TO EXPLORE <ArrowDown size={14} />
+          SCROLL TO EXPLORE
+          <ArrowDown size={14} />
         </a>
       </div>
     </section>
   );
 }
 
-// ==============================
+// ======================================
 // ABOUT
-// ==============================
+// ======================================
 
 function About() {
   return (
-    <section id="about" className="section container">
+    <section
+      id="about"
+      className="section container"
+    >
       <Reveal>
-        <p className="eyebrow">01 / ABOUT ME</p>
+        <p className="eyebrow">
+          01 / ABOUT ME
+        </p>
 
         <div className="about-grid">
           <h2>
             A little
             <br />
-            about me<span className="accent">.</span>
+            about me
+            <span className="accent">.</span>
           </h2>
 
           <div className="about-content">
             <p className="lead">
-              I bring together business thinking, technical
-              knowledge, and a passion for solving meaningful
-              problems.
+              I bring together business thinking,
+              technical knowledge, and a passion
+              for solving meaningful problems.
             </p>
+
             <p>
-              I am pursuing an MBA Global with Placement at the
-              University of Greenwich, building upon my academic
-              background in Computer Science and Engineering.
+              I am pursuing an MBA Global with
+              Placement at the University of Greenwich,
+              building upon my academic background
+              in Computer Science and Engineering.
             </p>
+
             <p>
-              My experience spans marketing leadership, IT,
-              software development, and research. I enjoy
-              exploring how technology and business can work
-              together to create practical solutions.
+              My experience spans marketing leadership,
+              IT, software development, and research.
+              I enjoy exploring how technology and
+              business can work together to create
+              practical solutions.
             </p>
           </div>
         </div>
@@ -307,20 +360,29 @@ function About() {
   );
 }
 
-// ==============================
+// ======================================
 // EXPERIENCE
-// ==============================
+// ======================================
 
 function Experience() {
   return (
-    <section id="experience" className="section container">
+    <section
+      id="experience"
+      className="section container"
+    >
       <Reveal>
-        <p className="eyebrow">02 / EXPERIENCE</p>
+        <p className="eyebrow">
+          02 / EXPERIENCE
+        </p>
+
         <h2>
-          Professional journey<span className="accent">.</span>
+          Professional journey
+          <span className="accent">.</span>
         </h2>
+
         <p className="section-description">
-          Experience across business, marketing, and technology.
+          Experience across business,
+          marketing, and technology.
         </p>
       </Reveal>
 
@@ -331,11 +393,15 @@ function Experience() {
               <div className="experience-number">
                 {String(index + 1).padStart(2, "0")}
               </div>
+
               <div className="experience-info">
                 <h3>{item.role}</h3>
                 <p>{item.company}</p>
               </div>
-              <span className="experience-date">{item.date}</span>
+
+              <span className="experience-date">
+                {item.date}
+              </span>
             </div>
           </Reveal>
         ))}
@@ -344,17 +410,24 @@ function Experience() {
   );
 }
 
-// ==============================
+// ======================================
 // EDUCATION
-// ==============================
+// ======================================
 
 function Education() {
   return (
-    <section id="education" className="section container">
+    <section
+      id="education"
+      className="section container"
+    >
       <Reveal>
-        <p className="eyebrow">03 / EDUCATION</p>
+        <p className="eyebrow">
+          03 / EDUCATION
+        </p>
+
         <h2>
-          Academic background<span className="accent">.</span>
+          Academic background
+          <span className="accent">.</span>
         </h2>
       </Reveal>
 
@@ -362,9 +435,16 @@ function Education() {
         {education.map((item, index) => (
           <Reveal key={index}>
             <div className="education-card">
-              <GraduationCap size={25} strokeWidth={1.5} />
+              <GraduationCap
+                size={25}
+                strokeWidth={1.5}
+              />
+
               <div>
-                <span className="education-date">{item.date}</span>
+                <span className="education-date">
+                  {item.date}
+                </span>
+
                 <h3>{item.degree}</h3>
                 <p>{item.school}</p>
               </div>
@@ -376,21 +456,29 @@ function Education() {
   );
 }
 
-// ==============================
+// ======================================
 // PROJECTS
-// ==============================
+// ======================================
 
 function Projects() {
   return (
-    <section id="projects" className="section container">
+    <section
+      id="projects"
+      className="section container"
+    >
       <Reveal>
-        <p className="eyebrow">04 / SELECTED WORK</p>
+        <p className="eyebrow">
+          04 / SELECTED WORK
+        </p>
+
         <h2>
-          Projects & research<span className="accent">.</span>
+          Projects & research
+          <span className="accent">.</span>
         </h2>
+
         <p className="section-description">
-          Exploring practical applications of data, machine
-          learning, and technology.
+          Exploring practical applications of data,
+          machine learning, and technology.
         </p>
       </Reveal>
 
@@ -402,11 +490,18 @@ function Projects() {
                 <span>
                   {project.number} / {project.year}
                 </span>
-                <ArrowUpRight size={22} strokeWidth={1.5} />
+
+                <ArrowUpRight
+                  size={22}
+                  strokeWidth={1.5}
+                />
               </div>
 
               <div className="project-content">
-                <p className="eyebrow">{project.category}</p>
+                <p className="eyebrow">
+                  {project.category}
+                </p>
+
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
               </div>
@@ -418,24 +513,34 @@ function Projects() {
   );
 }
 
-// ==============================
+// ======================================
 // SKILLS
-// ==============================
+// ======================================
 
 function Skills() {
   return (
-    <section id="skills" className="section container">
+    <section
+      id="skills"
+      className="section container"
+    >
       <Reveal>
-        <p className="eyebrow">05 / EXPERTISE</p>
+        <p className="eyebrow">
+          05 / EXPERTISE
+        </p>
+
         <h2>
-          Skills & strengths<span className="accent">.</span>
+          Skills & strengths
+          <span className="accent">.</span>
         </h2>
       </Reveal>
 
       <Reveal>
         <div className="skills-grid">
           {skills.map((skill) => (
-            <div className="skill-item" key={skill}>
+            <div
+              className="skill-item"
+              key={skill}
+            >
               <span className="skill-dot" />
               {skill}
             </div>
@@ -446,35 +551,50 @@ function Skills() {
   );
 }
 
-// ==============================
+// ======================================
 // PUBLICATION
-// ==============================
+// ======================================
 
 function Publication() {
   return (
-    <section id="publication" className="section container">
+    <section
+      id="publication"
+      className="section container"
+    >
       <Reveal>
-        <p className="eyebrow">06 / PUBLICATION</p>
+        <p className="eyebrow">
+          06 / PUBLICATION
+        </p>
+
         <h2>
-          Published research<span className="accent">.</span>
+          Published research
+          <span className="accent">.</span>
         </h2>
 
         <div className="publication-card">
-          <BookOpen size={30} strokeWidth={1.5} />
+          <BookOpen
+            size={30}
+            strokeWidth={1.5}
+          />
 
           <div>
-            <p className="eyebrow">RESEARCH PUBLICATION</p>
+            <p className="eyebrow">
+              RESEARCH PUBLICATION
+            </p>
+
             <h3>
-              Categorization of Non-Alcoholic Fatty Liver
-              Disease Using XG-Boost
+              Categorization of Non-Alcoholic
+              Fatty Liver Disease Using XG-Boost
             </h3>
+
             <a
               href="https://ieeexplore.ieee.org/document/10837138"
               target="_blank"
               rel="noopener noreferrer"
               className="publication-link"
             >
-              View Publication <ArrowUpRight size={18} />
+              View Publication
+              <ArrowUpRight size={18} />
             </a>
           </div>
         </div>
@@ -483,23 +603,31 @@ function Publication() {
   );
 }
 
-// ==============================
+// ======================================
 // CONTACT
-// ==============================
+// ======================================
 
 function Contact() {
   return (
-    <section id="contact" className="contact-section">
+    <section
+      id="contact"
+      className="contact-section"
+    >
       <div className="container">
         <Reveal>
-          <p className="eyebrow">07 / CONTACT</p>
+          <p className="eyebrow">
+            07 / CONTACT
+          </p>
+
           <h2>
-            Let's connect<span className="accent">.</span>
+            Let's connect
+            <span className="accent">.</span>
           </h2>
+
           <p className="contact-description">
-            I'm always interested in meaningful conversations,
-            new ideas, and professional opportunities.
-            Feel free to reach out.
+            I'm always interested in meaningful
+            conversations, new ideas, and professional
+            opportunities. Feel free to reach out.
           </p>
 
           <div className="contact-buttons">
@@ -518,10 +646,11 @@ function Contact() {
               rel="noopener noreferrer"
             >
               <img
-                src={`${process.env.PUBLIC_URL}/linkedin.png`}
+                src={`${process.env.PUBLIC_URL}/icons/linkedin.svg`}
                 alt=""
                 className="social-icon"
               />
+
               LinkedIn
               <ArrowUpRight size={16} />
             </a>
@@ -532,63 +661,111 @@ function Contact() {
   );
 }
 
-// ==============================
+// ======================================
 // FOOTER
-// ==============================
+// ======================================
 
 function Footer() {
   return (
     <footer className="footer container">
-      <a className="footer-logo" href="#home">
+      <a
+        className="footer-logo"
+        href="#home"
+      >
         HP<span>.</span>
       </a>
+
       <p>
-        © {new Date().getFullYear()} Hari Priya Yellajosyula.
+        © {new Date().getFullYear()}{" "}
+        Hari Priya Yellajosyula.
         All rights reserved.
       </p>
-      <a href="#home" className="back-to-top">
+
+      <a
+        href="#home"
+        className="back-to-top"
+      >
         Back to top ↑
       </a>
     </footer>
   );
 }
 
-// ==============================
-// MAIN APP WITH THEME SUPPORT
-// ==============================
+// ======================================
+// MAIN APP
+// LIGHT MODE + DARK MODE + LOADER
+// ======================================
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
     try {
-      const saved = localStorage.getItem("portfolio-theme");
-      if (saved === "light" || saved === "dark") {
-        return saved;
+      const savedTheme = localStorage.getItem(
+        "portfolio-theme"
+      );
+
+      if (
+        savedTheme === "light" ||
+        savedTheme === "dark"
+      ) {
+        return savedTheme;
       }
     } catch (error) {
-      // Continue with the default theme.
+      // Use the default theme.
     }
+
     return "light";
   });
 
+  const [loading, setLoading] = useState(true);
+
+  // Apply and save the selected theme.
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.setAttribute(
+      "data-theme",
+      theme
+    );
 
     try {
-      localStorage.setItem("portfolio-theme", theme);
+      localStorage.setItem(
+        "portfolio-theme",
+        theme
+      );
     } catch (error) {
-      // Theme still works if storage is unavailable.
+      // Theme works without localStorage.
     }
   }, [theme]);
 
+  // Show the loading animation for 1.8 seconds.
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1800);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const toggleTheme = () => {
-    setTheme((current) =>
-      current === "light" ? "dark" : "light"
+    setTheme((currentTheme) =>
+      currentTheme === "light"
+        ? "dark"
+        : "light"
     );
   };
 
   return (
     <>
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      {/* LOADING ANIMATION */}
+      <AnimatePresence>
+        {loading && <Loader />}
+      </AnimatePresence>
+
+      {/* NAVIGATION */}
+      <Navbar
+        theme={theme}
+        toggleTheme={toggleTheme}
+      />
+
+      {/* MAIN WEBSITE */}
       <main>
         <Hero />
         <About />
@@ -599,6 +776,8 @@ export default function App() {
         <Publication />
         <Contact />
       </main>
+
+      {/* FOOTER */}
       <Footer />
     </>
   );
