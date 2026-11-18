@@ -20,7 +20,7 @@ export default function Loader() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
         >
-          H<span>.</span>P<span>.</span>
+          H<span></span>P<span>.</span>
         </motion.div>
 
         <div className="loader-progress">
